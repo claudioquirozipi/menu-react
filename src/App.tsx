@@ -1,34 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import MenuCreatePage from "./menu/pages/menuCreate";
+import CategoryPage from "./category/pages/category";
+import MenuAdminPage from "./menu/pages/menuAdmin";
+import MenuEditPage from "./menu/pages/menuEdit";
+import ImagePage from "./image/pages/image";
+import LoginPage from "./auth/pages/login";
+import MenuPage from "./menu/pages/menu";
+
+import "primereact/resources/themes/vela-purple/theme.css"; //theme
+import "primereact/resources/primereact.min.css"; //core css
+import "primeicons/primeicons.css";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const queryClient = new QueryClient();
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <MenuPage />,
+    },
+    {
+      path: "/admin",
+      element: <MenuAdminPage />,
+    },
+    {
+      path: "/admin/create",
+      element: <MenuCreatePage />,
+    },
+    {
+      path: "/admin/edit/:id",
+      element: <MenuEditPage />,
+    },
+    {
+      path: "admin/image",
+      element: <ImagePage />,
+    },
+    {
+      path: "admin/category",
+      element: <CategoryPage />,
+    },
+    {
+      path: "/auth/login",
+      element: <LoginPage />,
+    },
+  ]);
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
