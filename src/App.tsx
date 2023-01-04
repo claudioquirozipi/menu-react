@@ -24,7 +24,9 @@ function App() {
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <h1>hola mundo</h1>
+        <h1>{process?.env?.VITE_REACT_APP_SUPABASE_URL}</h1>
+        {/* <RouterProvider router={router} /> */}
         <ReactQueryDevtools />
       </QueryClientProvider>
     </div>
