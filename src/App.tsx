@@ -28,6 +28,7 @@ function App() {
 
         {/* <h1>{process?.env?.VERCEL_HOLA}</h1> */}
         <h1>{import.meta?.env?.VITE_REACT_APP_SUPABASE_URL}</h1>
+        <h2>chao</h2>
         {/* <RouterProvider router={router} /> */}
         <ReactQueryDevtools />
       </QueryClientProvider>
