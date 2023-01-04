@@ -26,7 +26,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <h1>hola mundo</h1>
 
-        <h1>{process?.env?.VERCEL_HOLA}</h1>
+        {/* <h1>{process?.env?.VERCEL_HOLA}</h1> */}
         <h1>{import.meta?.env?.VERCEL_HOLA}</h1>
         {/* <RouterProvider router={router} /> */}
         <ReactQueryDevtools />
